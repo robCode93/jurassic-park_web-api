@@ -8,7 +8,7 @@ namespace jp_backend.Database.Entities
         public Guid Id { get; set; }
         public string Name { get; set; } = String.Empty;
         public string? Description { get; set; }
-        public int? DiscoveryYear { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         // Informations
         public string? EatingPattern { get; set; }
@@ -16,9 +16,9 @@ namespace jp_backend.Database.Entities
         public int HeightInCentimeter { get; set; }
         public int LengthInCentimeter { get; set; }
         public double WeightInKilogram { get; set; }
+        public List<string>? DnaString { get; set; }
 
         // Fremdverweise der Klasse Dinosaurier
-        public DnaString? DnaString { get; set; }
         public Period? Period { get; set; }
         public DinosaurClass? Classification { get; set; }
         public DinosaurLocality? LocalityOfDiscovery { get; set; }

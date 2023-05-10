@@ -7,7 +7,7 @@ namespace jp_backend.Models.Create
     {
         public string Name { get; set; } = String.Empty;
         public string? Description { get; set; }
-        public int? DiscoveryYear { get; set; }
+        public DateTime? Birthdate { get; set; }
 
         // Informations
         public string? EatingPattern { get; set; }
@@ -17,7 +17,7 @@ namespace jp_backend.Models.Create
         public double WeightInKilogram { get; set; }
 
         // Fremdverweise der Klasse Dinosaurier
-        public DnaStringDetails? DnaString { get; set; }
+        public List<string> DnaString { get; set; } = new List<string>();
         public Guid? PeriodId { get; set; }
         public Guid? ClassificationId { get; set; }
         public Guid? LocalityOfDiscoveryId { get; set; }

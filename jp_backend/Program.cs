@@ -1,4 +1,6 @@
 using jp_backend.Database;
+using jp_backend.ServiceInterfaces;
+using jp_backend.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<JurassicParkConnection>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("ConStr")));
+
+builder.Services.AddScoped<IDinosaurClassService, DinosaurClassService>();
+builder.Services.AddScoped<IDinosaurHabitatService, DinosaurHabitatService>();
+builder.Services.AddScoped<IDinosaurLocalityService, DinosaurLocalityService>();
+builder.Services.AddScoped<IDinosaurService, DinosaurService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IFileReferenceService, FileReferenceService>();
+builder.Services.AddScoped<IPeriodService, PeriodService>();
+
 
 var app = builder.Build();
 
