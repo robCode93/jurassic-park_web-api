@@ -8,6 +8,7 @@ namespace jp_backend.Models.Update
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int? DiscoveryYear { get; set; }
+        public string? VersionNumber { get; set; }
 
         // Informations
         public string? EatingPattern { get; set; }

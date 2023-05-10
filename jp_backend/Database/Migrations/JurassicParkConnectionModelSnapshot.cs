@@ -29,14 +29,14 @@ namespace jp_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<Guid?>("ClassificationId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
+
+                    b.Property<int?>("DiscoveryYear")
+                        .HasColumnType("integer");
 
                     b.Property<List<string>>("DnaString")
                         .HasColumnType("text[]");
@@ -65,6 +65,9 @@ namespace jp_backend.Migrations
 
                     b.Property<Guid?>("ThumbnailId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("VersionNumber")
+                        .HasColumnType("text");
 
                     b.Property<double>("WeightInKilogram")
                         .HasColumnType("double precision");
@@ -241,6 +244,44 @@ namespace jp_backend.Migrations
                     b.ToTable("FileReferences");
                 });
 
+            modelBuilder.Entity("jp_backend.Database.Entities.ParkAnimal", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AnimalNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("DinosaurTypeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("HabitatId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DinosaurTypeId");
+
+                    b.HasIndex("HabitatId");
+
+                    b.ToTable("ParkAnimals");
+                });
+
             modelBuilder.Entity("jp_backend.Database.Entities.Period", b =>
                 {
                     b.Property<Guid>("Id")
@@ -312,6 +353,21 @@ namespace jp_backend.Migrations
                         .HasForeignKey("ThumbnailId");
 
                     b.Navigation("Thumbnail");
+                });
+
+            modelBuilder.Entity("jp_backend.Database.Entities.ParkAnimal", b =>
+                {
+                    b.HasOne("jp_backend.Database.Entities.Dinosaur", "DinosaurType")
+                        .WithMany()
+                        .HasForeignKey("DinosaurTypeId");
+
+                    b.HasOne("jp_backend.Database.Entities.DinosaurHabitat", "Habitat")
+                        .WithMany()
+                        .HasForeignKey("HabitatId");
+
+                    b.Navigation("DinosaurType");
+
+                    b.Navigation("Habitat");
                 });
 
             modelBuilder.Entity("jp_backend.Database.Entities.DinosaurHabitat", b =>

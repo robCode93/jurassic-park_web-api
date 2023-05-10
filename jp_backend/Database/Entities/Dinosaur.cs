@@ -9,6 +9,7 @@ namespace jp_backend.Database.Entities
         public string Name { get; set; } = String.Empty;
         public string? Description { get; set; }
         public int? DiscoveryYear { get; set; }
+        public string? VersionNumber { get; set; }
 
         // Informations
         public string? EatingPattern { get; set; }

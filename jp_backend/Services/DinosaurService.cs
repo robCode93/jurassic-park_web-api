@@ -60,10 +60,10 @@ namespace jp_backend.Services
             var locality = _context.DinosaurLocalities.FirstOrDefault(x => x.Id == createModel.LocalityOfDiscoveryId);
             var thumbnail = _context.FileReferences.FirstOrDefault(x => x.Id == createModel.ThumbnailId); 
 
-            if (_context.Dinosaurs.Any(x => x.Name == createModel.Name))
+            if (_context.Dinosaurs.Any(x => x.Name == createModel.Name && x.VersionNumber == createModel.VersionNumber))
             {
                 model.IsSuccess = false;
-                model.Message = "Dinosaurname already exists in database";
+                model.Message = "Dinosaur already exists in database";
                 return model;
             }
 
@@ -76,6 +76,7 @@ namespace jp_backend.Services
             dinosaur.HeightInCentimeter = createModel.HeightInCentimeter;
             dinosaur.LengthInCentimeter = createModel.LengthInCentimeter;
             dinosaur.WeightInKilogram = createModel.WeightInKilogram;
+            dinosaur.VersionNumber = createModel.VersionNumber;
 
             if (createModel.DnaString is not null)
             {
@@ -133,10 +134,10 @@ namespace jp_backend.Services
                 return model;
             }
 
-            if (updateModel.Name is not null && updateModel.Name != dinosaur.Name && _context.Dinosaurs.Any(x => x.Name == updateModel.Name))
+            if (updateModel.Name is not null && updateModel.Name != dinosaur.Name && _context.Dinosaurs.Any(x => x.Name == updateModel.Name && x.VersionNumber == updateModel.VersionNumber))
             {
                 model.IsSuccess = false;
-                model.Message = "Name of dinosaur already exists in database";
+                model.Message = "Dinosaur already exists in database";
                 return model;
             }
 
@@ -288,6 +289,7 @@ namespace jp_backend.Services
             details.HeightInCentimeter = dinosaur.HeightInCentimeter;
             details.LengthInCentimeter = dinosaur.LengthInCentimeter;
             details.WeightInKilogram = dinosaur.WeightInKilogram;
+            details.VersionNumber = dinosaur.VersionNumber;
 
             if (dinosaur.DnaString is not null)
             {

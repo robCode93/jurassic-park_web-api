@@ -21,6 +21,7 @@ builder.Services.AddScoped<IDinosaurService, DinosaurService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IFileReferenceService, FileReferenceService>();
 builder.Services.AddScoped<IPeriodService, PeriodService>();
+builder.Services.AddScoped<IParkAnimalService, ParkAnimalService>();
 
 
 var app = builder.Build();

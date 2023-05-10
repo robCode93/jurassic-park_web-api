@@ -1,19 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using jp_backend.Database.Entities;
 
-namespace jp_backend.Database.Entities
+namespace jp_backend.Models.Details
 {
-    public class ParkAnimal
+    public class ParkAnimalDetails
     {
-        [Key]
         public Guid Id { get; set; }
         public int AnimalNumber { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Gender { get; set; } = string.Empty;
         public string? Description { get; set; }
+        public string Gender { get; set; } = string.Empty;
         public DateTime Birthdate { get; set; }
 
         // Fremdverweise der Klasse Park-Tier
-        public DinosaurHabitat? Habitat { get; set; }
-        public Dinosaur? DinosaurType { get; set; }
+        public DinosaurHabitatDetails? Habitat { get; set; }
+        public DinosaurDetails? DinosaurType { get; set; }
     }
 }

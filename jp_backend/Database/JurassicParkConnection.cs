@@ -12,6 +12,7 @@ namespace jp_backend.Database
         public DbSet<DinosaurLocality> DinosaurLocalities { get; set; }
         public DbSet<Period> Periods { get; set; }
         public DbSet<DinosaurHabitat> Habitats { get; set; }
+        public DbSet<ParkAnimal> ParkAnimals { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<FileReference> FileReferences { get; set; }
     }

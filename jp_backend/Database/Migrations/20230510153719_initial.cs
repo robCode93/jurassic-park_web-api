@@ -134,7 +134,8 @@ namespace jp_backend.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DiscoveryYear = table.Column<int>(type: "integer", nullable: true),
+                    VersionNumber = table.Column<string>(type: "text", nullable: true),
                     EatingPattern = table.Column<string>(type: "text", nullable: true),
                     ModeOfLocomotion = table.Column<string>(type: "text", nullable: true),
                     HeightInCentimeter = table.Column<int>(type: "integer", nullable: false),
@@ -168,6 +169,34 @@ namespace jp_backend.Migrations
                         name: "FK_Dinosaurs_Periods_PeriodId",
                         column: x => x.PeriodId,
                         principalTable: "Periods",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParkAnimals",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    AnimalNumber = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Gender = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Birthdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    HabitatId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DinosaurTypeId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParkAnimals", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ParkAnimals_Dinosaurs_DinosaurTypeId",
+                        column: x => x.DinosaurTypeId,
+                        principalTable: "Dinosaurs",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ParkAnimals_Habitats_HabitatId",
+                        column: x => x.HabitatId,
+                        principalTable: "Habitats",
                         principalColumn: "Id");
                 });
 
@@ -205,16 +234,32 @@ namespace jp_backend.Migrations
                 name: "IX_Employees_ThumbnailId",
                 table: "Employees",
                 column: "ThumbnailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParkAnimals_DinosaurTypeId",
+                table: "ParkAnimals",
+                column: "DinosaurTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParkAnimals_HabitatId",
+                table: "ParkAnimals",
+                column: "HabitatId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "ParkAnimals");
+
+            migrationBuilder.DropTable(
                 name: "Dinosaurs");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Habitats");
 
             migrationBuilder.DropTable(
                 name: "DinosaurClasses");
@@ -224,9 +269,6 @@ namespace jp_backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Periods");
-
-            migrationBuilder.DropTable(
-                name: "Habitats");
 
             migrationBuilder.DropTable(
                 name: "FileReferences");
