@@ -70,7 +70,7 @@ namespace jp_backend.Services
             Dinosaur dinosaur = new Dinosaur();
             dinosaur.Name = createModel.Name;
             dinosaur.Description = createModel.Description;
-            dinosaur.BirthDate = createModel.Birthdate;
+            dinosaur.DiscoveryYear = createModel.DiscoveryYear;
             dinosaur.EatingPattern = createModel.EatingPattern;
             dinosaur.ModeOfLocomotion = createModel.ModeOfLocomotion;
             dinosaur.HeightInCentimeter = createModel.HeightInCentimeter;
@@ -154,13 +154,13 @@ namespace jp_backend.Services
                 dinosaur.Description = null;
             }
 
-            if (updateModel.BirthDate is not null)
+            if (updateModel.DiscoveryYear is not null)
             {
-                dinosaur.BirthDate = updateModel.BirthDate.Value;
+                dinosaur.DiscoveryYear = updateModel.DiscoveryYear;
             }
             else
             {
-                dinosaur.BirthDate = null;
+                dinosaur.DiscoveryYear = null;
             }
 
             if (updateModel.EatingPattern is not null)
@@ -282,7 +282,7 @@ namespace jp_backend.Services
             details.Id = dinosaur.Id;
             details.Name = dinosaur.Name;
             details.Description = dinosaur.Description;
-            details.BirthDate = dinosaur.BirthDate;
+            details.DiscoveryYear = dinosaur.DiscoveryYear;
             details.EatingPattern = dinosaur.EatingPattern;
             details.ModeOfLocomotion = dinosaur.ModeOfLocomotion;
             details.HeightInCentimeter = dinosaur.HeightInCentimeter;

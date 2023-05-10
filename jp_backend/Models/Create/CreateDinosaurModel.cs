@@ -7,7 +7,7 @@ namespace jp_backend.Models.Create
     {
         public string Name { get; set; } = String.Empty;
         public string? Description { get; set; }
-        public DateTime? Birthdate { get; set; }
+        public int? DiscoveryYear { get; set; }
 
         // Informations
         public string? EatingPattern { get; set; }
