@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/platform-browser": "^16.0.1",
+    "@fortawesome/angular-fontawesome": "^0.13.0"
+  }
+}

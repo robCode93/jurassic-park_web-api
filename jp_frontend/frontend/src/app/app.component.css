@@ -1,0 +1,7 @@
+/* ########## MENU ########## */
+.menu{
+    padding-top: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
